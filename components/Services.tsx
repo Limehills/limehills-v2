@@ -1,58 +1,97 @@
-
 import React from 'react';
 
-const services = [
+const SERVICES_DATA = [
   {
-    title: 'Digital Forge',
-    desc: 'Bespoke web architecture built for velocity and scale. We don\'t settle for average.',
-    color: 'bg-white',
-    tag: 'Web Dev'
+    title: 'SOFTWARE DEVELOPMENT',
+    content: (
+      <>
+        Python, React, Vue, Angular, Next, Express, WordPress, Laravel, Node.js.<br /><br />
+        Mobile Development: React Native, Flutter, Swift.
+      </>
+    ),
+    bgColor: 'bg-white',
   },
   {
-    title: 'Brand Altitude',
-    desc: 'Visual systems that cut through the noise. Bold colors, sharp lines, peak recognition.',
-    color: 'bg-blue-200',
-    tag: 'Design'
+    title: 'CLOUD SOLUTION',
+    content: (
+      <>
+        PLATFORMS: AWS, Azure, Google Cloud.<br />
+        Services: Cloud migration, Cloudnative application development and Cloud infrastructure and security.
+      </>
+    ),
+    bgColor: 'bg-blue-200',
   },
   {
-    title: 'AI Synthesis',
-    desc: 'Custom generative solutions that streamline your operations and drive efficiency.',
-    color: 'bg-blue-400',
-    tag: 'Future-Proof'
+    title: 'APPLICATION CONSULTANT',
+    content: (
+      <>
+        Platforms - Jira, Shopify, WordPress, WooCommerce.
+      </>
+    ),
+    bgColor: 'bg-[#60a5fa]', // A medium blue
+  },
+  {
+    title: 'DEVOPS SERVICES',
+    content: (
+      <>
+        Tools - Terraform, Ansible, Puppet, Docker, Kubernetes, Jenkins.<br />
+        Focus: CI/CD pipelines, workflow automation.
+      </>
+    ),
+    bgColor: 'bg-white',
+  },
+  {
+    title: 'UI/UX DESIGN',
+    content: (
+      <>
+        Website & Web App Interface Design, Mobile App UI Design (iOS & Android), Design Systems & Style Guides, High-Fidelity Mockups (Figma).
+      </>
+    ),
+    bgColor: 'bg-blue-200',
+  },
+  {
+    title: 'GRAPHIC DESIGN SERVICES',
+    content: (
+      <>
+        Marketing & Advertising Design, Digital & Web Graphics, Print & Publication Design
+      </>
+    ),
+    bgColor: 'bg-[#60a5fa]',
   },
 ];
 
 const Services: React.FC = () => {
   return (
-    <section>
-      <div className="flex flex-col md:flex-row items-baseline gap-4 md:gap-6 mb-12 md:mb-20">
-        <h2 className="text-4xl sm:text-6xl md:text-7xl font-black text-blue-900 uppercase tracking-tighter">
-          Solutions
-        </h2>
-        <div className="h-4 flex-1 border-b-8 border-blue-900 hidden md:block"></div>
-        <p className="text-xs sm:text-sm md:text-xl font-bold text-blue-800 uppercase tracking-widest bg-white border-4 border-blue-900 px-3 py-2 md:px-4 md:py-2 whitespace-nowrap">
-          Precision Built
-        </p>
-      </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12">
-        {services.map((s, i) => (
-          <div key={i} className={`brutalist-card ${s.color} p-6 md:p-10 brutalist-shadow brutalist-shadow-hover relative group`}>
-            <div className="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-blue-900 text-white p-2 md:p-3 font-black uppercase text-xs md:text-sm brutalist-shadow-sm group-hover:rotate-12 transition-transform">
-              {s.tag}
+    <section className="py-20 px-4 md:px-8 bg-[#f0f4f8] font-sans">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="flex items-center gap-4 mb-16">
+          <h2 className="text-5xl md:text-7xl font-black text-[#1034a6] uppercase tracking-tighter whitespace-nowrap">
+            OUR SERVICES
+          </h2>
+          <div className="h-2 md:h-3 bg-[#1034a6] w-full mt-2 md:mt-4 rounded-sm"></div>
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-x-12 md:gap-y-12">
+          {SERVICES_DATA.map((service, index) => (
+            <div
+              key={index}
+              className={`${service.bgColor} border-4 md:border-[6px] border-[#1034a6] p-6 md:p-8 aspect-[3/4] shadow-[10px_10px_0px_#1034a6] hover:-translate-y-2 hover:shadow-[16px_16px_0px_#1034a6] transition-all duration-300 flex flex-col items-center text-center h-full justify-center`}
+            >
+              <h3 className="text-xl md:text-3xl font-black text-[#1034a6] uppercase leading-tight mb-4" style={{ fontFamily: "'Anton', sans-serif" }}>
+                {service.title.split(' ').map((word, i, arr) => (
+                  <React.Fragment key={i}>
+                    {word} {arr.length > 2 && i === Math.floor(arr.length / 2) - 1 ? <br /> : ''}
+                  </React.Fragment>
+                ))}
+              </h3>
+              <p className="text-[#1034a6] font-bold text-base md:text-lg leading-relaxed">
+                {service.content}
+              </p>
             </div>
-            <div className="text-3xl md:text-5xl font-black text-blue-900/20 mb-4 md:mb-6 italic">#{i + 1}</div>
-            <h3 className="text-2xl md:text-4xl font-black mb-4 md:mb-6 uppercase text-blue-900 tracking-tight">{s.title}</h3>
-            <p className="text-base md:text-xl font-bold text-blue-900 leading-tight">
-              {s.desc}
-            </p>
-            <div className="mt-6 md:mt-8 pt-6 md:pt-8 border-t-4 border-blue-900/10">
-              <span className="font-black text-blue-600 uppercase flex items-center gap-2 group-hover:gap-4 transition-all cursor-pointer text-sm md:text-base">
-                Explore Tech <span className="text-lg md:text-2xl">→</span>
-              </span>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,48 +1,74 @@
-
 import React from 'react';
+import { User, Mail } from 'lucide-react';
 
-const reviews = [
-  {
-    quote: "Limehills didn't just rebuild our brand; they gave it a soul that commands attention.",
-    author: "James Vance",
-    role: "Founder, Peak Systems",
-  },
-  {
-    quote: "The technical execution is unparalleled. They move fast and break expectations.",
-    author: "Sarah Chen",
-    role: "Director of UX, Horizon",
-  },
-];
-
-const Testimonials: React.FC = () => {
+const ContactSection: React.FC = () => {
   return (
-    <section>
-      <div className="bg-blue-600 border-4 md:border-8 border-blue-900 p-6 md:p-20 brutalist-shadow relative overflow-hidden">
-        <div className="absolute top-0 right-0 p-2 md:p-4 opacity-10">
-          <svg className="w-32 md:w-64 h-32 md:h-64 text-white" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C15.4647 8 15.017 8.44772 15.017 9V12C15.017 12.5523 14.5693 13 14.017 13H11.017C10.4647 13 10.017 12.5523 10.017 12V9C10.017 8.44772 10.4647 8 11.017 8H14.017C14.5693 8 15.017 7.55228 15.017 7V5C15.017 4.44772 14.5693 4 14.017 4H5.01701C4.46473 4 4.01701 4.44772 4.01701 5V15C4.01701 15.5523 4.46473 16 5.01701 16H8.01701C8.56929 16 9.01701 16.4477 9.01701 17V20C9.01701 20.5523 9.46473 21 10.017 21H14.017Z" />
-          </svg>
+    <section className="py-20 px-4 md:px-8 bg-[#f0f4f8] font-sans">
+      <div className="max-w-5xl mx-auto">
+
+        {/* Header */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
+          {/* Decorative Line on Left */}
+          <div className="hidden md:block w-32 md:w-48 h-2 md:h-3 bg-[#1034a6]"></div>
+
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-[#1034a6] uppercase tracking-tight text-center">
+            LETS WORK TOGETHER
+          </h2>
         </div>
-        
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
-          {reviews.map((r, i) => (
-            <div key={i} className="space-y-4 md:space-y-8">
-              <div className="text-2xl sm:text-3xl md:text-5xl font-black text-white italic leading-tight uppercase tracking-tighter">
-                "{r.quote}"
+
+        {/* Form Container */}
+        <form className="w-full space-y-6">
+
+          <div className="flex flex-col md:flex-row gap-6">
+            {/* Name Input */}
+            <div className="flex-1 relative group">
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-[#1034a6]">
+                <User size={28} fill="currentColor" className="text-[#1034a6]" />
               </div>
-              <div className="flex items-center gap-4 md:gap-6">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-blue-900 brutalist-shadow-sm flex-shrink-0"></div>
-                <div>
-                  <div className="text-lg md:text-2xl font-black text-blue-900 uppercase leading-none">{r.author}</div>
-                  <div className="text-sm md:text-lg font-bold text-blue-100 uppercase">{r.role}</div>
-                </div>
-              </div>
+              <input
+                type="text"
+                placeholder="Name"
+                className="w-full pl-14 pr-4 py-3 md:py-4 bg-white border-2 border-[#1034a6] text-[#1034a6] text-lg md:text-xl font-medium placeholder-[#8b9ecc] focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all placeholder:font-normal"
+              />
             </div>
-          ))}
-        </div>
+
+            {/* Email Input */}
+            <div className="flex-1 relative group">
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-[#1034a6]">
+                <Mail size={28} fill="currentColor" strokeWidth={1} className="text-[#1034a6]" />
+              </div>
+              <input
+                type="email"
+                placeholder="Email"
+                className="w-full pl-14 pr-4 py-3 md:py-4 bg-white border-2 border-[#1034a6] text-[#1034a6] text-lg md:text-xl font-medium placeholder-[#8b9ecc] focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all placeholder:font-normal"
+              />
+            </div>
+          </div>
+
+          {/* Message Textarea */}
+          <div className="relative">
+            <textarea
+              placeholder="Tell us more about your Project"
+              rows={6}
+              className="w-full p-4 bg-white border-2 border-[#1034a6] text-[#1034a6] text-lg md:text-xl font-medium placeholder-[#8b9ecc] focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all resize-none placeholder:font-normal"
+            ></textarea>
+          </div>
+
+          {/* Submit Button */}
+          <div className="mt-8">
+            <button
+              type="submit"
+              className="bg-white text-[#1034a6] border-4 border-[#1034a6] px-8 py-3 md:px-12 md:py-4 text-xl md:text-2xl font-black uppercase shadow-[8px_8px_0px_#1034a6] hover:translate-y-[-2px] hover:translate-x-[-2px] hover:shadow-[12px_12px_0px_#1034a6] active:translate-y-0 active:translate-x-0 active:shadow-[4px_4px_0px_#1034a6] transition-all"
+            >
+              SEND MESSAGE
+            </button>
+          </div>
+
+        </form>
+
       </div>
     </section>
   );
 };
 
-export default Testimonials;
+export default ContactSection;
