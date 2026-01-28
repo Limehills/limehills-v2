@@ -79,10 +79,10 @@ const Services: React.FC = () => {
               key={index}
               className={`${service.bgColor} border-4 md:border-[6px] border-[#1034a6] p-6 md:p-8 aspect-[3/4] shadow-[10px_10px_0px_#1034a6] hover:-translate-y-2 hover:shadow-[16px_16px_0px_#1034a6] transition-all duration-300 flex flex-col items-center text-center h-full justify-center`}
             >
-              <h3 className="text-xl md:text-3xl font-black text-[#1034a6] uppercase leading-tight mb-4" style={{ fontFamily: "'Anton', sans-serif" }}>
+              <h3 className="text-3xl md:text-4xl font-black text-[#1034a6] uppercase leading-none mb-4 font-sans tracking-tight">
                 {service.title.split(' ').map((word, i, arr) => (
                   <React.Fragment key={i}>
-                    {word} {arr.length > 2 && i === Math.floor(arr.length / 2) - 1 ? <br /> : ''}
+                    {word} {i === Math.ceil(arr.length / 2) - 1 ? <br /> : ' '}
                   </React.Fragment>
                 ))}
               </h3>

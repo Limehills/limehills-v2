@@ -3,11 +3,11 @@ import { User, Mail } from 'lucide-react';
 
 const ContactSection: React.FC = () => {
   return (
-    <section className="py-20 px-4 md:px-8 bg-[#f0f4f8] font-sans">
+    <section id="contact" className="py-20 px-4 md:px-8 bg-[#f0f4f8] font-sans">
       <div className="max-w-5xl mx-auto">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
+        <div className="flex flex-col md:flex-row items-end justify-center gap-5 mb-12">
           {/* Decorative Line on Left */}
           <div className="hidden md:block w-32 md:w-48 h-2 md:h-3 bg-[#1034a6]"></div>
 

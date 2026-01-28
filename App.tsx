@@ -22,16 +22,13 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-8 mb-8">
             {/* Logo Section */}
-            <div className="flex items-center gap-3 select-none">
+            {/* Logo Section */}
+            <div className="flex items-center gap-4 select-none">
               <div className="relative">
-                {/* Icon Placeholder or Image from public */}
-                <img src="/limehills.png" alt="Limehills Logo" className="h-32 md:h-32 w-50 md:w-50 object-contain drop-shadow-[4px_4px_0px_rgba(30,58,138,0.5)]" />
+                <img src="/limehills.png" alt="Limehills Logo" className="h-28 w-28 md:h-32 md:w-32 object-contain drop-shadow-[2px_2px_0px_rgba(30,58,138,0.3)]" />
               </div>
-              <h2 className="text-5xl md:text-7xl font-black tracking-tighter" style={{
-                fontFamily: "'Anton', sans-serif",
-                color: 'white',
-                WebkitTextStroke: '2px #1143b9', // Dark border 
-                textShadow: '6px 6px 0px #1143b9' // Solid deep blue shadow
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight font-sans text-white" style={{
+                textShadow: '3px 3px 0 #1e3a8a'
               }}>
                 LIMEHILLS
               </h2>

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+
 
 const PROJECTS_DATA = [
   {
     id: 1,
     title: "BIGASAN HUB",
     subtitle: "INVENTORY SYSTEM",
-    image: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&q=80&w=800&h=600",
+    image: "/bigasan.png",
     impacts: [
       "Reduced Stock Shortages",
       "Lower Inventory Costs",
@@ -58,66 +58,67 @@ const Projects: React.FC = () => {
 
   return (
     <section className="py-20 px-4 md:px-8 bg-[#f0f4f8] font-sans">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-8xl mx-auto">
 
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-8 md:mb-12 gap-6 relative">
+        <div className="flex flex-col xl:flex-row items-start xl:items-end justify-between mb-12 gap-10 relative">
 
           {/* Title Area */}
-          <div className="relative z-10">
-            <h2 className="text-6xl md:text-8xl font-black text-[#1034a6] uppercase leading-[0.85] tracking-tighter" style={{ fontFamily: "'Impact', sans-serif" }}>
-              FINISHED <br />
-              <span className="relative inline-block">
+          <div className="relative z-10 shrink-0">
+            <h2 className="text-7xl md:text-8xl font-black uppercase leading-[0.8] tracking-tighter font-sans">
+              <span className="text-[#1034a6]">FINISHED</span> <br />
+              <span className="text-white" style={{ textShadow: '7px 7px 0 #1034a6' }}>
                 PROJECTS
-                {/* Text Shadow Layer for Depth Effect */}
-                <span className="absolute inset-0 text-white translate-x-[2px] translate-y-[-2px] -z-10 pointer-events-none" style={{ textShadow: '2px 2px 0 #1034a6' }}>
-                  PROJECTS
-                </span>
               </span>
             </h2>
 
             {/* Navigation Buttons */}
-            <div className="flex gap-4 mt-6">
+            <div className="flex gap-1 mt-8">
               <button
                 onClick={handlePrev}
-                className="w-16 h-12 bg-[#8daef2] hover:bg-[#1034a6] border-2 border-white shadow-[2px_2px_0px_#1034a6] flex items-center justify-center transition-colors group"
+                className="w-20 h-12 bg-[#8daef2] hover:bg-[#7a9ce6] flex items-center justify-center transition-all group"
               >
-                <ArrowLeft className="text-white w-8 h-8 group-hover:scale-110 transition-transform" />
+                <svg width="70" height="32" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" className="text-white group-hover:-translate-x-1 transition-transform">
+                  <path d="M22 10H-7V6l-6 6 6 6v-4h70V10z" />
+                </svg>
               </button>
               <button
                 onClick={handleNext}
-                className="w-16 h-12 bg-[#1034a6] hover:bg-[#0a2375] border-2 border-white shadow-[2px_2px_0px_#1034a6] flex items-center justify-center transition-colors group"
+                className="w-20 h-12 bg-[#1034a6] hover:bg-[#0a2375] flex items-center justify-center transition-all group"
               >
-                <ArrowRight className="text-white w-8 h-8 group-hover:scale-110 transition-transform" />
+                <svg width="70" height="32" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" className="text-white group-hover:translate-x-1 transition-transform">
+                  <path d="M2 10h26V6l6 6-6 6v-4H-10V10z" />
+                </svg>
               </button>
             </div>
           </div>
 
           {/* Subtitle / Tagline */}
-          <div className="flex-1 w-full md:w-auto md:ml-12 mb-2 md:mb-4 self-center md:self-start md:mt-4">
-            <div className="border-b-4 border-[#1034a6] pb-2 w-full">
-              <p className="text-[#1034a6] font-bold text-lg md:text-2xl italic tracking-wide">
+          <div className="flex-1 w-full md:w-auto md:ml-2 mb-2 md:mb-4 self-center md:self-start md:mt-20">
+            <div className="border-b-4 border-[#1034a6] pb-1 w-full">
+              <p className="text-[#1034a6] font-bold text-lg md:text-3xl italic tracking-wide">
                 Built with precision. Delivered with purpose.
               </p>
+              <div className="h-3 w-full bg-white shadow-[4px_0px_0px_#1034a6]"></div>
             </div>
           </div>
         </div>
 
         {/* Main Content Area - Slideshow Container */}
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start mt-8">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start mt-2">
 
           {/* LEFT: Project Image (Monitor/Frame Style) */}
           <div className="w-full lg:w-1/2 relative group perspective-1000">
             {/* Background Decoration Box */}
-            <div className="absolute top-4 left-4 w-full h-full bg-[#1034a6] -z-10 transform translate-x-2 translate-y-2 rounded-sm"></div>
+            <div className=" absolute top-4 left-4 w-full h-full bg-[#1034a6] -z-200 transform translate-x-2 translate-y-2 rounded-sm"></div>
 
             <div className="bg-white border-[6px] border-[#1034a6] p-4 shadow-xl relative z-10 transition-transform duration-500 ease-out transform group-hover:-translate-y-1">
-              <div className="border-2 border-[#1034a6] overflow-hidden">
+              <div className="border-[10px]  border-[#1034a6] overflow-hidden">
                 <img
                   key={currentProject.image}
                   src={currentProject.image}
                   alt={currentProject.title}
-                  className="w-full h-[300px] md:h-[450px] object-cover animate-fade-in"
+                  className="w-full h-[300px] md:h-[600px] object-cover animate-fade-in"
                 />
               </div>
               {/* Mock Login Form Overlay (Optional or integrated into image functionality) - visually simulating the 'Bigasan Hub' look if image isn't enough */}
@@ -128,11 +129,12 @@ const Projects: React.FC = () => {
           <div className="w-full lg:w-1/2 space-y-8 animate-slide-in-right">
 
             {/* Title Block */}
+            {/* Title Block */}
             <div>
-              <h3 className="text-5xl md:text-7xl font-black text-[#1034a6] uppercase tracking-tight leading-none mb-2" style={{ fontFamily: "'Anton', sans-serif" }}>
+              <h3 className="text-6xl md:text-7xl font-black text-[#1034a6] uppercase leading-[0.85] mb-2 font-sans">
                 {currentProject.title}
               </h3>
-              <p className="text-2xl md:text-3xl font-bold text-[#1034a6] uppercase tracking-wide">
+              <p className="text-3xl md:text-4xl font-bold text-[#1034a6] uppercase tracking-tight font-sans">
                 {currentProject.subtitle}
               </p>
             </div>
@@ -140,8 +142,8 @@ const Projects: React.FC = () => {
             {/* Impact Section */}
             <div className="space-y-4">
               {/* Boxed Header */}
-              <div className="inline-block bg-white border-4 border-[#1034a6] shadow-[6px_6px_0px_#1034a6] transform -rotate-1 hover:rotate-0 transition-transform duration-300">
-                <h4 className="text-[#1034a6] font-black text-xl md:text-2xl px-6 py-2 uppercase tracking-wider">
+              <div className="inline-block bg-white border-4 border-[#1034a6] shadow-[6px_6px_0px_#1034a6]">
+                <h4 className="text-[#1034a6] font-black text-xl md:text-4xl px-6 py-2 uppercase tracking-wider">
                   IMPACT TO OUR CLIENT
                 </h4>
               </div>
@@ -149,7 +151,7 @@ const Projects: React.FC = () => {
               {/* Bullet List */}
               <ul className="space-y-3 mt-6 ml-2">
                 {currentProject.impacts.map((impact, index) => (
-                  <li key={index} className="flex items-center text-[#1034a6] text-lg md:text-2xl font-bold">
+                  <li key={index} className="flex items-center text-[#1034a6] text-lg md:text-3xl font-bold">
                     <span className="text-2xl mr-3">•</span>
                     {impact}
                   </li>

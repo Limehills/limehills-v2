@@ -11,23 +11,23 @@ const Hero: React.FC = () => {
       <div className="absolute top-[5%] left-[2%] w-20 h-20 md:top-60 md:left-[14%] md:w-32 md:h-32 bg-white border-4 border-[#1034a6] shadow-[8px_8px_0px_#1034a6] flex items-center justify-center -rotate-12 z-20">
         <div className="text-center">
           <span
-             className="text-blue-900 font-black text-sm md:text-3xl block leading-none transform scale-x-75">EST</span>
+            className="text-blue-900 font-black text-sm md:text-3xl block leading-none transform scale-x-75">EST</span>
           <span className="text-blue-900 font-normal text-xl md:text-5xl block leading-none" style={{ fontFamily: "'Impact', 'Arial Black', sans-serif", letterSpacing: '-0.05em' }}>2022</span>
         </div>
       </div>
 
       {/* Floating Badge: TRUSTED PARTNER */}
-     <div className="absolute top-[12%] right-[2%] md:top-[25%] md:right-[5%] rotate-12 z-20">
-      {/* Container with the offset "block" shadow and negative rotation */}
-      <div className="bg-[#60a5fa] border-[7px] border-[#1034a6] shadow-[6px_6px_0px_0px_#1034a6] md:shadow-[10px_10px_0px_0px_#1034a6] px-3 py-2 md:px-16 md:py-2 -rotate-6 flex items-center justify-center">
-        
-        <h2 className="text-[#1034a6] font-[900] text-sm md:text-3xl uppercase text-center leading-[0.85] tracking-tighter"
+      <div className="absolute top-[12%] right-[2%] md:top-[25%] md:right-[5%] rotate-12 z-20">
+        {/* Container with the offset "block" shadow and negative rotation */}
+        <div className="bg-[#60a5fa] border-[7px] border-[#1034a6] shadow-[6px_6px_0px_0px_#1034a6] md:shadow-[10px_10px_0px_0px_#1034a6] px-3 py-2 md:px-16 md:py-2 -rotate-6 flex items-center justify-center">
+
+          <h2 className="text-[#1034a6] font-[900] text-sm md:text-3xl uppercase text-center leading-[0.85] tracking-tighter"
             style={{ fontFamily: 'sans-serif' }}>
-          TRUSTED <br />
-          <span className="inline-block mt-1">PARTNER</span>
-        </h2>
+            TRUSTED <br />
+            <span className="inline-block mt-1">PARTNER</span>
+          </h2>
+        </div>
       </div>
-    </div>
 
 
       <div className="max-w-6xl mx-auto text-center z-10 relative flex flex-col items-center w-full mt-[-50px] ">
@@ -64,9 +64,9 @@ const Hero: React.FC = () => {
 
         {/* Contact Us Button */}
         <div className="mb-8 md:mb-8">
-          <button className="bg-white text-blue-900 border-4 border-blue-900 px-6 py-3 sm:px-12 sm:py-4 md:px-16 md:py-5 text-base sm:text-xl md:text-3xl font-black uppercase italic shadow-[5px_5px_0px_#1e3a8a] md:shadow-[8px_8px_0px_#1e3a8a] hover:shadow-[8px_8px_0px_#1e3a8a] md:hover:shadow-[12px_12px_0px_#1e3a8a] hover:-translate-y-1 transition-all transform -skew-x-12 active:translate-y-0 active:shadow-[4px_4px_0px_#1e3a8a]">
+          <a href="#contact" className="inline-block bg-white text-blue-900 border-4 border-blue-900 px-6 py-3 sm:px-12 sm:py-4 md:px-16 md:py-5 text-base sm:text-xl md:text-3xl font-black uppercase italic shadow-[5px_5px_0px_#1e3a8a] md:shadow-[8px_8px_0px_#1e3a8a] hover:shadow-[8px_8px_0px_#1e3a8a] md:hover:shadow-[12px_12px_0px_#1e3a8a] hover:-translate-y-1 transition-all transform -skew-x-12 active:translate-y-0 active:shadow-[4px_4px_0px_#1e3a8a]">
             CONTACT US
-          </button>
+          </a>
         </div>
       </div>
 
