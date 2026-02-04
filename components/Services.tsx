@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 const SERVICES_DATA = [
   {
@@ -61,11 +61,38 @@ const SERVICES_DATA = [
 ];
 
 const Services: React.FC = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section className="py-20 px-4 md:px-8 bg-[#f0f4f8] font-sans">
+    <section 
+      ref={sectionRef}
+      className="py-20 px-4 md:px-8 bg-[#f0f4f8] font-sans relative overflow-hidden"
+    >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="flex items-center gap-4 mb-16">
+        <div className={`flex items-center gap-4 mb-16 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-5xl md:text-7xl font-black text-[#1034a6] uppercase tracking-tighter whitespace-nowrap">
             OUR SERVICES
           </h2>
@@ -77,7 +104,12 @@ const Services: React.FC = () => {
           {SERVICES_DATA.map((service, index) => (
             <div
               key={index}
-              className={`${service.bgColor} border-4 md:border-[6px] border-[#1034a6] p-6 md:p-8 aspect-[3/4] shadow-[10px_10px_0px_#1034a6] hover:-translate-y-2 hover:shadow-[16px_16px_0px_#1034a6] transition-all duration-300 flex flex-col items-center text-center h-full justify-center`}
+              className={`${service.bgColor} border-4 md:border-[6px] border-[#1034a6] p-6 md:p-8 aspect-[3/4] shadow-[10px_10px_0px_#1034a6] hover:-translate-y-2 hover:shadow-[16px_16px_0px_#1034a6] transition-all duration-300 flex flex-col items-center text-center h-full justify-center ${
+                isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
+              }`}
+              style={{
+                animationDelay: `${index * 0.15}s`
+              }}
             >
               <h3 className="text-3xl md:text-4xl font-black text-[#1034a6] uppercase leading-none mb-4 font-sans tracking-tight">
                 {service.title.split(' ').map((word, i, arr) => (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 
 const PROJECTS_DATA = [
@@ -45,6 +45,43 @@ const PROJECTS_DATA = [
 
 const Projects: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [imageParallax, setImageParallax] = useState(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleImageParallax = () => {
+      if (!sectionRef.current) return;
+      const { top } = sectionRef.current.getBoundingClientRect();
+      if (top < window.innerHeight && top > -500) {
+        setImageParallax((top - window.innerHeight) * 0.2);
+      }
+    };
+
+    window.addEventListener('scroll', handleImageParallax);
+    return () => window.removeEventListener('scroll', handleImageParallax);
+  }, []);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % PROJECTS_DATA.length);
@@ -57,11 +94,14 @@ const Projects: React.FC = () => {
   const currentProject = PROJECTS_DATA[currentIndex];
 
   return (
-    <section className="py-20 px-4 md:px-8 bg-[#f0f4f8] font-sans">
+    <section
+      ref={sectionRef}
+      className="py-20 px-4 md:px-8 bg-[#f0f4f8] font-sans relative overflow-hidden"
+    >
       <div className="max-w-8xl mx-auto">
 
         {/* Header Section */}
-        <div className="flex flex-col xl:flex-row items-start xl:items-end justify-between mb-12 gap-10 relative">
+        <div className={`flex flex-col xl:flex-row items-start xl:items-end justify-between mb-12 gap-10 relative transition-all duration-1000 ${isVisible ? 'animate-fade-in-down' : 'opacity-0 -translate-y-10'}`}>
 
           {/* Title Area */}
           <div className="relative z-10 shrink-0">
@@ -73,10 +113,10 @@ const Projects: React.FC = () => {
             </h2>
 
             {/* Navigation Buttons */}
-            <div className="flex gap-1 mt-8">
+            <div className="flex gap-1 mt-8 animate-fade-in-left" style={{ animationDelay: '0.3s' }}>
               <button
                 onClick={handlePrev}
-                className="w-20 h-12 bg-[#8daef2] hover:bg-[#7a9ce6] flex items-center justify-center transition-all group"
+                className="w-20 h-12 bg-[#8daef2] hover:bg-[#7a9ce6] flex items-center justify-center transition-all group hover:shadow-lg"
               >
                 <svg width="70" height="32" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" className="text-white group-hover:-translate-x-1 transition-transform">
                   <path d="M22 10H-7V6l-6 6 6 6v-4h70V10z" />
@@ -108,12 +148,12 @@ const Projects: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start mt-2">
 
           {/* LEFT: Project Image (Monitor/Frame Style) */}
-          <div className="w-full lg:w-1/2 relative group perspective-1000">
+          <div className={`w-full lg:w-1/2 relative group perspective-1000 transition-all duration-1000 ${isVisible ? 'animate-slide-in-left' : 'opacity-0 -translate-x-10'}`} style={{ transform: `translateY(${imageParallax}px)` }}>
             {/* Background Decoration Box */}
             <div className=" absolute top-4 left-4 w-full h-full bg-[#1034a6] -z-200 transform translate-x-2 translate-y-2 rounded-sm"></div>
 
             <div className="bg-white border-[6px] border-[#1034a6] p-4 shadow-xl relative z-10 transition-transform duration-500 ease-out transform group-hover:-translate-y-1">
-              <div className="border-[10px]  border-[#1034a6] overflow-hidden">
+              <div className="border-[10px] border-[#1034a6] overflow-hidden">
                 <img
                   key={currentProject.image}
                   src={currentProject.image}
@@ -126,7 +166,7 @@ const Projects: React.FC = () => {
           </div>
 
           {/* RIGHT: Project Details */}
-          <div className="w-full lg:w-1/2 space-y-8 animate-slide-in-right">
+          <div className={`w-full lg:w-1/2 space-y-8 transition-all duration-1000 ${isVisible ? 'animate-slide-in-right' : 'opacity-0 translate-x-10'}`} style={{ animationDelay: '0.2s' }}>
 
             {/* Title Block */}
             {/* Title Block */}
