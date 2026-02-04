@@ -16,7 +16,7 @@ const services = [
         icon: Palette,
         title: 'UI/UX Design',
         description: 'Crafting intuitive and beautiful user journeys that convert visitors into loyal customers.',
-        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80',
+        image: 'public/UX.gif',
         color: 'text-purple-600',
         bgColor: 'bg-purple-50'
     },

@@ -38,7 +38,7 @@ const ScrollToTop: React.FC = () => {
             setTimeout(() => {
                 setIsLaunching(false);
             }, 800);
-        }, 600);
+        }, 1000);
     };
 
     return (
@@ -74,9 +74,9 @@ const ScrollToTop: React.FC = () => {
                             isLaunching
                                 ? {
                                     opacity: [1, 1, 0],
-                                    scale: [1, 1.2, 0.8],
-                                    y: [-500, -1000],
-                                    rotate: [0, -10, 10, 0]
+                                    scale: [1, 1.5, 2],
+                                    y: [0, -window.innerHeight],
+                                    rotate: 0
                                 }
                                 : { opacity: 1, scale: 1, y: 0, rotate: 0 }
                         }
@@ -84,8 +84,8 @@ const ScrollToTop: React.FC = () => {
                         transition={
                             isLaunching
                                 ? {
-                                    duration: 0.6,
-                                    ease: [0.34, 1.56, 0.64, 1]
+                                    duration: 1,
+                                    ease: [0.22, 1, 0.36, 1]
                                 }
                                 : {
                                     type: "spring",
@@ -95,7 +95,10 @@ const ScrollToTop: React.FC = () => {
                         }
                         onClick={scrollToTop}
                         disabled={isLaunching}
-                        className="relative w-14 h-14 rounded-full bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-200 flex items-center justify-center group disabled:cursor-default"
+                        className={`relative w-14 h-14 rounded-full flex items-center justify-center group disabled:cursor-default transition-all duration-200 ${isLaunching
+                            ? 'bg-transparent shadow-none text-indigo-600 z-50'
+                            : 'bg-gradient-to-br from-indigo-600 to-purple-600 text-white shadow-lg hover:shadow-xl hover:scale-110'
+                            }`}
                         aria-label="Scroll to top"
                     >
                         <motion.div
@@ -105,7 +108,11 @@ const ScrollToTop: React.FC = () => {
                             } : {}}
                             transition={{ duration: 0.3 }}
                         >
-                            <Rocket className="w-6 h-6 transform group-hover:-translate-y-1 transition-transform duration-200" />
+                            <Rocket
+                                className="w-7 h-7 transform -rotate-45 group-hover:-translate-y-1 transition-transform duration-200"
+                                fill="currentColor"
+                                strokeWidth={2.5}
+                            />
                         </motion.div>
 
                         {/* Launch fire effect */}
