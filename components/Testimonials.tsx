@@ -27,9 +27,9 @@ const ContactSection: React.FC = () => {
   }, []);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="contact" 
+      id="contact"
       className="py-20 px-4 md:px-8 bg-[#f0f4f8] font-sans relative overflow-hidden"
     >
       <div className="max-w-5xl mx-auto">
@@ -44,11 +44,9 @@ const ContactSection: React.FC = () => {
           </h2>
         </div>
 
-        {/* Form Container */}
-        <form className={`w-full space-y-6 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`} style={{ animationDelay: '0.2s' }}>
+        {/* <form className={`w-full space-y-6 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`} style={{ animationDelay: '0.2s' }}>
 
           <div className="flex flex-col md:flex-row gap-6">
-            {/* Name Input */}
             <div className={`flex-1 relative group transition-all duration-1000 ${isVisible ? 'animate-slide-in-left' : 'opacity-0 -translate-x-10'}`} style={{ animationDelay: '0.3s' }}>
               <div className="absolute left-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-[#1034a6]">
                 <User size={28} fill="currentColor" className="text-[#1034a6]" />
@@ -60,7 +58,6 @@ const ContactSection: React.FC = () => {
               />
             </div>
 
-            {/* Email Input */}
             <div className={`flex-1 relative group transition-all duration-1000 ${isVisible ? 'animate-slide-in-right' : 'opacity-0 translate-x-10'}`} style={{ animationDelay: '0.4s' }}>
               <div className="absolute left-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-[#1034a6]">
                 <Mail size={28} fill="currentColor" strokeWidth={1} className="text-[#1034a6]" />
@@ -73,7 +70,6 @@ const ContactSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Message Textarea */}
           <div className={`relative transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`} style={{ animationDelay: '0.5s' }}>
             <textarea
               placeholder="Tell us more about your Project"
@@ -82,7 +78,6 @@ const ContactSection: React.FC = () => {
             ></textarea>
           </div>
 
-          {/* Submit Button */}
           <div className={`mt-8 transition-all duration-1000 ${isVisible ? 'animate-scale-in' : 'opacity-0 scale-90'}`} style={{ animationDelay: '0.6s' }}>
             <button
               type="submit"
@@ -92,7 +87,16 @@ const ContactSection: React.FC = () => {
             </button>
           </div>
 
-        </form>
+        </form> */}
+
+        <div className={`mt-8 transition-all duration-1000 flex justify-center ${isVisible ? 'animate-scale-in' : 'opacity-0 scale-90'}`} style={{ animationDelay: '0.6s', paddingTop: '3rem' }}>
+          <a href="mailto:dev@limehills.net"
+            type="submit"
+            className="bg-white text-[#1034a6] border-4 border-[#1034a6] px-8 py-3 md:px-12 md:py-4 text-xl md:text-2xl font-black uppercase shadow-[8px_8px_0px_#1034a6] hover:translate-y-[-2px] hover:translate-x-[-2px] hover:shadow-[12px_12px_0px_#1034a6] active:translate-y-0 active:translate-x-0 active:shadow-[4px_4px_0px_#1034a6] transition-all hover:scale-105"
+          >
+            SEND MESSAGE
+          </a>
+        </div>
 
       </div>
     </section>
