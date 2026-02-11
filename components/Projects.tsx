@@ -17,28 +17,28 @@ const PROJECTS_DATA = [
   },
   {
     id: 2,
-    title: "ARCTIC NEXUS",
-    subtitle: "E-COMMERCE PLATFORM",
-    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800&h=600",
+    title: "JAMS BRANDED COLLECTION",
+    subtitle: "INVENTORY SYSTEM",
+    image: "/jam.jpg",
     impacts: [
-      "300% Increase in Sales",
-      "Streamlined Checkout Process",
-      "AI-Powered Recommendations",
-      "Global Payment Integration",
-      "Enhanced Customer Retention"
+      "Accurate stock tracking",
+      "Efficient size management",
+      "Faster sales and restocking",
+      "Improved pricing and promotions",
+      "Enhanced brand consistency"
     ]
   },
   {
     id: 3,
-    title: "VANGUARD OS",
-    subtitle: "ENTERPRISE SAAS",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800&h=600",
+    title: "ALIN CARGO EXPRESS",
+    subtitle: "MONEY REMITTANCE SYSTEM",
+    image: "cargo-express.jpg",
     impacts: [
-      "Automated Workflow Management",
-      "Data-Driven Insights",
-      "Secure Cloud Infrastructure",
-      "Cross-Department Collaboration",
-      "Scalable Architecture"
+      "Faster transactions",
+      "Improved transaction accuracy",
+      "Enhanced security",
+      "Better record management",
+      "Increased customer trust"
     ]
   }
 ];
