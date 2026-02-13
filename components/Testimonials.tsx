@@ -1,126 +1,155 @@
-import React, { useRef } from 'react';
-import { User, Mail } from 'lucide-react';
-import { motion, useInView } from 'framer-motion';
+import React, { useState, useEffect, useCallback } from 'react';
+import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const ContactSection: React.FC = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
+const SLIDES = [
+  {
+    id: 1,
+    image: "/ceo.png",
+    name: "ISRAEL ALIN",
+    title: "CEO, ALIN GROUP",
+    quote: "Limehills didn't just rebuild our brand; they gave it a soul that commands attention."
+  },
+  {
+    id: 2,
+    image: "/ceo.png",
+    name: "SARAH JENKINS",
+    title: "CTO, TECH VISIONS",
+    quote: "Innovation is not just about code; it's about vision. Limehills delivered beyond all limits."
+  },
+  {
+    id: 3,
+    image: "/ceo.png",
+    name: "MICHAEL CHEN",
+    title: "DIRECTOR, FUTURE CORP",
+    quote: "A partner that helps you see the future is rare. With Limehills, the future is now."
+  }
+];
 
-  const inputVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
-  };
+const Testimonials: React.FC = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % SLIDES.length);
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + SLIDES.length) % SLIDES.length);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(nextSlide, 6000);
+    return () => clearInterval(interval);
+  }, [isPaused, nextSlide]);
 
   return (
-    <section
-      ref={sectionRef}
-      id="contact"
-      className="py-20 px-4 md:px-8 bg-[#f0f4f8] font-sans relative overflow-hidden"
-    >
-      <div className="max-w-5xl mx-auto">
+    <section className="relative py-16 md:py-24 px-4 md:px-8 bg-slate-50 overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-[#1034a6]/5 skew-x-12 transform origin-top-right pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-blue-100/30 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Header */}
+      <div className="max-w-6xl mx-auto relative z-10">
+
+        {/* Section Label */}
         <motion.div
-          className="flex flex-col md:flex-row items-end justify-center gap-5 mb-12"
-          initial={{ opacity: 0, y: -20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-          transition={{ duration: 0.6 }}
+          className="text-center mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
         >
-          {/* Decorative Line on Left */}
-          <motion.div
-            className="hidden md:block w-32 md:w-48 h-2 md:h-3 bg-[#1034a6]"
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            style={{ originX: 0 }}
-          ></motion.div>
-
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-[#1034a6] uppercase tracking-tight text-center" style={{ fontFamily: "'Outfit', sans-serif" }}>
-            LETS WORK TOGETHER
+          <span className="inline-block px-4 py-1.5 rounded-full bg-blue-100/50 text-[#1034a6] font-semibold text-sm tracking-wide mb-4 md:mb-6">
+            WHAT THEY SAY
+          </span>
+          <h2 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+            Client <span className="text-[#1034a6]">Stories</span>
           </h2>
         </motion.div>
 
-        {/* Form Container */}
-        <form className="w-full space-y-6">
+        {/* Main Gallery Container */}
+        <div className="relative bg-white rounded-3xl shadow-2xl shadow-slate-200/50 border border-slate-100 p-6 md:p-12 overflow-hidden">
 
-          <div className="flex flex-col md:flex-row gap-6">
-            {/* Name Input */}
-            <motion.div
-              className="flex-1 relative group"
-              variants={inputVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-[#1034a6]">
-                <User size={28} fill="currentColor" className="text-[#1034a6]" />
-              </div>
-              <input
-                type="text"
-                placeholder="Name"
-                className="w-full pl-14 pr-4 py-3 md:py-4 bg-white border-2 border-[#1034a6] text-[#1034a6] text-lg md:text-xl font-medium placeholder-[#8b9ecc] focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all placeholder:font-normal hover:shadow-[4px_4px_0px_#1034a6] focus:shadow-[4px_4px_0px_#1034a6]"
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-              />
-            </motion.div>
-
-            {/* Email Input */}
-            <motion.div
-              className="flex-1 relative group"
-              variants={inputVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              transition={{ delay: 0.3 }}
-            >
-              <div className="absolute left-4 top-1/2 transform -translate-y-1/2 pointer-events-none text-[#1034a6]">
-                <Mail size={28} fill="currentColor" strokeWidth={1} className="text-[#1034a6]" />
-              </div>
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full pl-14 pr-4 py-3 md:py-4 bg-white border-2 border-[#1034a6] text-[#1034a6] text-lg md:text-xl font-medium placeholder-[#8b9ecc] focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all placeholder:font-normal hover:shadow-[4px_4px_0px_#1034a6] focus:shadow-[4px_4px_0px_#1034a6]"
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-              />
-            </motion.div>
+          {/* Quote Icon Background */}
+          <div className="absolute top-8 right-8 text-slate-100 opacity-50 z-0 pointer-events-none">
+            <Quote size={80} md-size={120} fill="currentColor" />
           </div>
 
-          {/* Message Textarea */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <textarea
-              placeholder="Tell us more about your Project"
-              rows={6}
-              className="w-full p-4 bg-white border-2 border-[#1034a6] text-[#1034a6] text-lg md:text-xl font-medium placeholder-[#8b9ecc] focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all resize-none placeholder:font-normal hover:shadow-[4px_4px_0px_#1034a6] focus:shadow-[4px_4px_0px_#1034a6]"
-              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
-            ></textarea>
-          </motion.div>
+          <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-16 min-h-[400px]">
 
-          {/* Submit Button */}
-          <motion.div
-            className="mt-8 text-center md:text-left"
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.9, opacity: 0 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-          >
-            <motion.button
-              type="submit"
-              whileHover={{ scale: 1.05, boxShadow: "12px 12px 0px #1034a6", x: -2, y: -2 }}
-              whileTap={{ scale: 0.95, boxShadow: "4px 4px 0px #1034a6", x: 0, y: 0 }}
-              className="bg-white text-[#1034a6] border-4 border-[#1034a6] px-8 py-3 md:px-12 md:py-4 text-xl md:text-2xl font-black uppercase shadow-[8px_8px_0px_#1034a6] transition-all cursor-pointer"
-              style={{ fontFamily: "'Outfit', sans-serif" }}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col md:flex-row gap-8 md:gap-16 items-center w-full"
+              >
+                {/* Image */}
+                <div className="relative group shrink-0">
+                  <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-slate-50 shadow-xl shadow-blue-900/10 relative z-10">
+                    <img
+                      src={SLIDES[currentIndex].image}
+                      alt={SLIDES[currentIndex].name}
+                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-blue-100 rounded-full blur-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-500 -z-10 scale-110"></div>
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 text-center md:text-left space-y-6">
+                  <blockquote className="text-xl md:text-3xl lg:text-4xl font-medium text-slate-800 leading-relaxed italic" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    "{SLIDES[currentIndex].quote}"
+                  </blockquote>
+
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-bold text-[#1034a6]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                      {SLIDES[currentIndex].name}
+                    </h3>
+                    <p className="text-sm md:text-base font-semibold text-slate-500 tracking-wide uppercase mt-1">
+                      {SLIDES[currentIndex].title}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+          </div>
+
+          {/* Navigation */}
+          <div className="flex justify-between items-center mt-8 md:mt-0 md:absolute md:bottom-8 md:right-12 gap-4">
+            <button
+              onClick={prevSlide}
+              className="p-3 rounded-full bg-slate-50 hover:bg-[#1034a6] hover:text-white text-slate-400 transition-all shadow-sm hover:shadow-md"
+              aria-label="Previous testimonial"
             >
-              SEND MESSAGE
-            </motion.button>
-          </motion.div>
+              <ChevronLeft size={24} />
+            </button>
+            <div className="flex gap-2">
+              {SLIDES.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx)}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${currentIndex === idx ? 'w-8 bg-[#1034a6]' : 'w-2 bg-slate-200'}`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={nextSlide}
+              className="p-3 rounded-full bg-slate-50 hover:bg-[#1034a6] hover:text-white text-slate-400 transition-all shadow-sm hover:shadow-md"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight size={24} />
+            </button>
+          </div>
 
-        </form>
-
+        </div>
       </div>
     </section>
   );
 };
 
-export default ContactSection;
+export default Testimonials;

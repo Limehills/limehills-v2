@@ -91,16 +91,16 @@ const Services: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-24 px-4 md:px-8 bg-slate-50 font-sans relative overflow-hidden"
+      className="py-16 md:py-24 px-4 md:px-8 bg-[#f0f4f8] font-sans relative overflow-hidden"
     >
       {/* Background Decor */}
-      <div className="absolute top-[20%] right-0 w-[500px] h-[500px] bg-blue-100/50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
-      <div className="absolute bottom-[10%] left-[10%] w-[400px] h-[400px] bg-indigo-100/50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+      <div className="absolute top-[20%] right-0 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-blue-100/50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+      <div className="absolute bottom-[10%] left-[10%] w-[200px] h-[200px] md:w-[400px] md:h-[400px] bg-indigo-100/50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
-          className="flex flex-col md:flex-row items-end justify-between mb-20 gap-6"
+          className="flex flex-col md:flex-row items-end justify-between mb-12 md:mb-20 gap-6"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -109,10 +109,10 @@ const Services: React.FC = () => {
             <span className="inline-block py-1 px-3 rounded-full bg-[#1034a6]/10 text-[#1034a6] font-semibold text-sm tracking-widest uppercase mb-4">
               What We Do
             </span>
-            <h2 className="text-5xl md:text-6xl font-bold text-slate-900 leading-tight tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+            <h2 className="text-4xl md:text-6xl font-bold text-slate-900 leading-tight tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
               Our <span className="text-[#1034a6]">Services</span>
             </h2>
-            <p className="mt-6 text-xl text-slate-500 font-light leading-relaxed" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+            <p className="mt-4 md:mt-6 text-lg md:text-xl text-slate-500 font-light leading-relaxed" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
               Comprehensive digital solutions tailored to elevate your business.
             </p>
           </div>
@@ -127,7 +127,7 @@ const Services: React.FC = () => {
 
         {/* Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -140,27 +140,27 @@ const Services: React.FC = () => {
                 y: -10,
                 transition: { duration: 0.3 }
               }}
-              className="group relative h-full flex flex-col bg-white rounded-3xl p-8 shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden"
+              className="group relative h-full flex flex-col bg-white rounded-3xl p-6 md:p-8 shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden min-h-[300px] md:min-h-full"
             >
               {/* Hover Background Gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 to-blue-50/0 group-hover:from-blue-50/50 group-hover:to-indigo-50/50 transition-all duration-500 opacity-0 group-hover:opacity-100 pointer-events-none" />
 
               {/* Icon & Arrow */}
-              <div className="flex justify-between items-start mb-8 relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-[#1034a6]/5 text-[#1034a6] flex items-center justify-center group-hover:bg-[#1034a6] group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-md">
-                  {React.cloneElement(service.icon as React.ReactElement, { size: 28 })}
+              <div className="flex justify-between items-start mb-6 md:mb-8 relative z-10">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#1034a6]/5 text-[#1034a6] flex items-center justify-center group-hover:bg-[#1034a6] group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-md">
+                  {React.cloneElement(service.icon as React.ReactElement, { size: 24, className: "md:w-7 md:h-7" })}
                 </div>
-                <div className="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-slate-300 group-hover:text-[#1034a6] group-hover:border-[#1034a6]/20 transition-all duration-300">
-                  <ArrowUpRight size={20} />
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-slate-100 flex items-center justify-center text-slate-300 group-hover:text-[#1034a6] group-hover:border-[#1034a6]/20 transition-all duration-300">
+                  <ArrowUpRight size={16} className="md:w-5 md:h-5" />
                 </div>
               </div>
 
               {/* Content */}
               <div className="flex-1 flex flex-col relative z-10">
-                <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-[#1034a6] transition-colors duration-300" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-3 md:mb-4 group-hover:text-[#1034a6] transition-colors duration-300" style={{ fontFamily: "'Outfit', sans-serif" }}>
                   {service.title}
                 </h3>
-                <div className="text-slate-500 font-medium leading-relaxed mb-6" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <div className="text-slate-500 text-sm md:text-base font-medium leading-relaxed mb-4 md:mb-6" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
                   {service.content}
                 </div>
               </div>
