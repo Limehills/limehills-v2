@@ -1,129 +1,175 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { Code2, Cloud, MessageSquareText, GitBranch, LayoutTemplate, Palette, ArrowUpRight } from 'lucide-react';
 
 const SERVICES_DATA = [
   {
     title: 'SOFTWARE DEVELOPMENT',
+    icon: <Code2 size={32} />,
     content: (
       <>
         Python, React, Vue, Angular, Next, Express, WordPress, Laravel, Node.js.<br /><br />
         Mobile Development: React Native, Flutter, Swift.
       </>
-    ),
-    bgColor: 'bg-white',
+    )
   },
   {
     title: 'CLOUD SOLUTION',
+    icon: <Cloud size={32} />,
     content: (
       <>
         PLATFORMS: AWS, Azure, Google Cloud.<br />
         Services: Cloud migration, Cloudnative application development and Cloud infrastructure and security.
       </>
-    ),
-    bgColor: 'bg-blue-200',
+    )
   },
   {
     title: 'APPLICATION CONSULTANT',
+    icon: <MessageSquareText size={32} />,
     content: (
       <>
         Platforms - Jira, Shopify, WordPress, WooCommerce.
       </>
-    ),
-    bgColor: 'bg-[#60a5fa]', // A medium blue
+    )
   },
   {
     title: 'DEVOPS SERVICES',
+    icon: <GitBranch size={32} />,
     content: (
       <>
         Tools - Terraform, Ansible, Puppet, Docker, Kubernetes, Jenkins.<br />
         Focus: CI/CD pipelines, workflow automation.
       </>
-    ),
-    bgColor: 'bg-white',
+    )
   },
   {
     title: 'UI/UX DESIGN',
+    icon: <LayoutTemplate size={32} />,
     content: (
       <>
         Website & Web App Interface Design, Mobile App UI Design (iOS & Android), Design Systems & Style Guides, High-Fidelity Mockups (Figma).
       </>
-    ),
-    bgColor: 'bg-blue-200',
+    )
   },
   {
-    title: 'GRAPHIC DESIGN SERVICES',
+    title: 'GRAPHIC DESIGN',
+    icon: <Palette size={32} />,
     content: (
       <>
         Marketing & Advertising Design, Digital & Web Graphics, Print & Publication Design
       </>
-    ),
-    bgColor: 'bg-[#60a5fa]',
-  },
+    )
+  }
 ];
 
 const Services: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
       }
-    };
-  }, []);
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      className="py-20 px-4 md:px-8 bg-[#f0f4f8] font-sans relative overflow-hidden"
+      className="py-16 md:py-24 px-4 md:px-8 bg-[#f0f4f8] font-sans relative overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
+      {/* Background Decor */}
+      <div className="absolute top-[20%] right-0 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-blue-100/50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+      <div className="absolute bottom-[10%] left-[10%] w-[200px] h-[200px] md:w-[400px] md:h-[400px] bg-indigo-100/50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className={`flex items-center gap-4 mb-16 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-5xl md:text-7xl font-black text-[#1034a6] uppercase tracking-tighter whitespace-nowrap">
-            OUR SERVICES
-          </h2>
-          <div className="h-2 md:h-3 bg-[#1034a6] w-full mt-2 md:mt-4 rounded-sm"></div>
-        </div>
+        <motion.div
+          className="flex flex-col md:flex-row items-end justify-between mb-12 md:mb-20 gap-6"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <div className="max-w-2xl">
+            <span className="inline-block py-1 px-3 rounded-full bg-[#1034a6]/10 text-[#1034a6] font-semibold text-sm tracking-widest uppercase mb-4">
+              What We Do
+            </span>
+            <h2 className="text-4xl md:text-6xl font-bold text-slate-900 leading-tight tracking-tight" style={{ fontFamily: "'Outfit', sans-serif" }}>
+              Our <span className="text-[#1034a6]">Services</span>
+            </h2>
+            <p className="mt-4 md:mt-6 text-lg md:text-xl text-slate-500 font-light leading-relaxed" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+              Comprehensive digital solutions tailored to elevate your business.
+            </p>
+          </div>
+
+          <div className="hidden md:block">
+            <button className="px-8 py-4 bg-white text-[#1034a6] font-bold rounded-full shadow-lg shadow-blue-900/5 hover:shadow-blue-900/10 border border-slate-100 transition-all hover:-translate-y-1 flex items-center gap-2">
+              View All Services
+              <ArrowUpRight size={20} />
+            </button>
+          </div>
+        </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-x-12 md:gap-y-12">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {SERVICES_DATA.map((service, index) => (
-            <div
+            <motion.div
               key={index}
-              className={`${service.bgColor} border-4 md:border-[6px] border-[#1034a6] p-6 md:p-8 aspect-[3/4] shadow-[10px_10px_0px_#1034a6] hover:-translate-y-2 hover:shadow-[16px_16px_0px_#1034a6] transition-all duration-300 flex flex-col items-center text-center h-full justify-center ${
-                isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-10'
-              }`}
-              style={{
-                animationDelay: `${index * 0.15}s`
+              variants={itemVariants}
+              whileHover={{
+                y: -10,
+                transition: { duration: 0.3 }
               }}
+              className="group relative h-full flex flex-col bg-white rounded-3xl p-6 md:p-8 shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden min-h-[300px] md:min-h-full"
             >
-              <h3 className="text-3xl md:text-4xl font-black text-[#1034a6] uppercase leading-none mb-4 font-sans tracking-tight">
-                {service.title.split(' ').map((word, i, arr) => (
-                  <React.Fragment key={i}>
-                    {word} {i === Math.ceil(arr.length / 2) - 1 ? <br /> : ' '}
-                  </React.Fragment>
-                ))}
-              </h3>
-              <p className="text-[#1034a6] font-bold text-base md:text-lg leading-relaxed">
-                {service.content}
-              </p>
-            </div>
+              {/* Hover Background Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 to-blue-50/0 group-hover:from-blue-50/50 group-hover:to-indigo-50/50 transition-all duration-500 opacity-0 group-hover:opacity-100 pointer-events-none" />
+
+              {/* Icon & Arrow */}
+              <div className="flex justify-between items-start mb-6 md:mb-8 relative z-10">
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-[#1034a6]/5 text-[#1034a6] flex items-center justify-center group-hover:bg-[#1034a6] group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-md">
+                  {React.cloneElement(service.icon as React.ReactElement, { size: 24, className: "md:w-7 md:h-7" })}
+                </div>
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-slate-100 flex items-center justify-center text-slate-300 group-hover:text-[#1034a6] group-hover:border-[#1034a6]/20 transition-all duration-300">
+                  <ArrowUpRight size={16} className="md:w-5 md:h-5" />
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex-1 flex flex-col relative z-10">
+                <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-3 md:mb-4 group-hover:text-[#1034a6] transition-colors duration-300" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                  {service.title}
+                </h3>
+                <div className="text-slate-500 text-sm md:text-base font-medium leading-relaxed mb-4 md:mb-6" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                  {service.content}
+                </div>
+              </div>
+
+              {/* Bottom Line */}
+              <div className="h-1 w-12 bg-slate-200 group-hover:w-full group-hover:bg-[#1034a6] transition-all duration-500 rounded-full relative z-10 mt-auto"></div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
