@@ -22,7 +22,7 @@ const TermsOfUse: React.FC = () => {
                     </Link>
                     <div className="flex items-center gap-3">
                         <img src="/limehills.png" alt="Limehills Logo" className="h-10 w-10 object-contain drop-shadow-md" />
-                        <span className="font-black text-2xl tracking-tight hidden sm:block" style={{ textShadow: '2px 2px 0 #1e3a8a' }}>LIMEHILLS</span>
+                        <span className="font-black text-2xl tracking-tight hidden sm:block" style={{ textShadow: '2px 2px 0 #1e3a8a', fontFamily: "'Outfit', sans-serif" }}>LIMEHILLS</span>
                     </div>
                 </div>
             </header>
@@ -34,7 +34,7 @@ const TermsOfUse: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h1 className="text-4xl md:text-6xl font-black text-[#1034a6] uppercase mb-4 tracking-tight leading-none">
+                    <h1 className="text-4xl md:text-6xl font-black text-[#1034a6] uppercase mb-4 tracking-tight leading-none" style={{ fontFamily: "'Outfit', sans-serif" }}>
                         Terms of Use
                     </h1>
                     <p className="text-blue-600 font-bold mb-12 text-lg">
@@ -44,7 +44,7 @@ const TermsOfUse: React.FC = () => {
                     <div className="prose prose-lg prose-blue max-w-none text-slate-700">
                         {/* 1. Introduction */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 1. Introduction
                             </h2>
                             <p className="leading-relaxed">
@@ -54,7 +54,7 @@ const TermsOfUse: React.FC = () => {
 
                         {/* 2. Services Provided */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 2. Services Provided
                             </h2>
                             <p className="leading-relaxed">
@@ -64,7 +64,7 @@ const TermsOfUse: React.FC = () => {
 
                         {/* 3. User Responsibilities */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 3. User Responsibilities
                             </h2>
                             <p className="mb-4">As a user of our Services, you agree to:</p>
@@ -78,7 +78,7 @@ const TermsOfUse: React.FC = () => {
 
                         {/* 4. Intellectual Property */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 4. Intellectual Property
                             </h2>
                             <ul className="list-none space-y-4 pl-0">
@@ -95,7 +95,7 @@ const TermsOfUse: React.FC = () => {
 
                         {/* 5. Payment Terms */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 5. Payment Terms
                             </h2>
                             <ul className="grid md:grid-cols-3 gap-4 list-none pl-0">
@@ -116,7 +116,7 @@ const TermsOfUse: React.FC = () => {
 
                         {/* 6. Confidentiality */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 6. Confidentiality
                             </h2>
                             <ul className="list-none space-y-4 pl-0">
@@ -133,7 +133,7 @@ const TermsOfUse: React.FC = () => {
 
                         {/* 7. Limitation of Liability */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 7. Limitation of Liability
                             </h2>
                             <div className="space-y-4">
@@ -148,7 +148,7 @@ const TermsOfUse: React.FC = () => {
 
                         {/* 8. Indemnification */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 8. Indemnification
                             </h2>
                             <p className="leading-relaxed">
@@ -158,7 +158,7 @@ const TermsOfUse: React.FC = () => {
 
                         {/* 9. Termination */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 9. Termination
                             </h2>
                             <ul className="list-disc pl-6 space-y-2 text-slate-700 marker:text-blue-600">
@@ -170,7 +170,7 @@ const TermsOfUse: React.FC = () => {
 
                         {/* 10. Governing Law */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 10. Governing Law
                             </h2>
                             <p className="leading-relaxed">
@@ -180,7 +180,7 @@ const TermsOfUse: React.FC = () => {
 
                         {/* 11. Changes to These Terms */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 11. Changes to These Terms
                             </h2>
                             <p className="leading-relaxed">
@@ -190,7 +190,7 @@ const TermsOfUse: React.FC = () => {
 
                         {/* 12. Contact Us */}
                         <section className="mb-10 bg-blue-900 text-white p-8 rounded-xl shadow-[8px_8px_0px_#60a5fa] border-4 border-blue-400">
-                            <h2 className="text-2xl md:text-3xl font-black mb-4 uppercase">
+                            <h2 className="text-2xl md:text-3xl font-black mb-4 uppercase" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 12. Contact Us
                             </h2>
                             <p className="mb-4 text-blue-100">

@@ -22,7 +22,7 @@ const PrivacyPolicy: React.FC = () => {
                     </Link>
                     <div className="flex items-center gap-3">
                         <img src="/limehills.png" alt="Limehills Logo" className="h-10 w-10 object-contain drop-shadow-md" />
-                        <span className="font-black text-2xl tracking-tight hidden sm:block" style={{ textShadow: '2px 2px 0 #1e3a8a' }}>LIMEHILLS</span>
+                        <span className="font-black text-2xl tracking-tight hidden sm:block" style={{ textShadow: '2px 2px 0 #1e3a8a', fontFamily: "'Outfit', sans-serif" }}>LIMEHILLS</span>
                     </div>
                 </div>
             </header>
@@ -34,7 +34,7 @@ const PrivacyPolicy: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h1 className="text-4xl md:text-6xl font-black text-[#1034a6] uppercase mb-4 tracking-tight leading-none">
+                    <h1 className="text-4xl md:text-6xl font-black text-[#1034a6] uppercase mb-4 tracking-tight leading-none" style={{ fontFamily: "'Outfit', sans-serif" }}>
                         Privacy Policy
                     </h1>
                     <p className="text-blue-600 font-bold mb-12 text-lg">
@@ -44,7 +44,7 @@ const PrivacyPolicy: React.FC = () => {
                     <div className="prose prose-lg prose-blue max-w-none text-slate-700">
                         {/* 1. Introduction */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 1. Introduction
                             </h2>
                             <p className="leading-relaxed">
@@ -54,7 +54,7 @@ const PrivacyPolicy: React.FC = () => {
 
                         {/* 2. Information We Collect */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 2. Information We Collect
                             </h2>
                             <p className="mb-4">We collect various types of information, including:</p>
@@ -80,7 +80,7 @@ const PrivacyPolicy: React.FC = () => {
 
                         {/* 3. How We Use Your Information */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 3. How We Use Your Information
                             </h2>
                             <p className="mb-4">We use the information we collect for the following purposes:</p>
@@ -106,7 +106,7 @@ const PrivacyPolicy: React.FC = () => {
 
                         {/* 4. How We Share Your Information */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 4. How We Share Your Information
                             </h2>
                             <p className="mb-4">We do not sell or rent your personal information. However, we may share your information under the following circumstances:</p>
@@ -120,7 +120,7 @@ const PrivacyPolicy: React.FC = () => {
 
                         {/* 5. Data Security */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 5. Data Security
                             </h2>
                             <p>
@@ -130,7 +130,7 @@ const PrivacyPolicy: React.FC = () => {
 
                         {/* 6. Your Rights and Choices */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 6. Your Rights and Choices
                             </h2>
                             <p className="mb-4">You have the following rights regarding your information:</p>
@@ -156,7 +156,7 @@ const PrivacyPolicy: React.FC = () => {
 
                         {/* 7. Children’s Privacy */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 7. Children’s Privacy
                             </h2>
                             <p>
@@ -166,7 +166,7 @@ const PrivacyPolicy: React.FC = () => {
 
                         {/* 8. Changes to This Privacy Policy */}
                         <section className="mb-10">
-                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block">
+                            <h2 className="text-2xl md:text-3xl font-bold text-blue-900 mb-4 uppercase border-b-4 border-blue-200 pb-2 inline-block" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 8. Changes to This Privacy Policy
                             </h2>
                             <p>
@@ -176,7 +176,7 @@ const PrivacyPolicy: React.FC = () => {
 
                         {/* 9. Contact Us */}
                         <section className="mb-10 bg-blue-900 text-white p-8 rounded-xl shadow-[8px_8px_0px_#60a5fa] border-4 border-blue-400">
-                            <h2 className="text-2xl md:text-3xl font-black mb-4 uppercase">
+                            <h2 className="text-2xl md:text-3xl font-black mb-4 uppercase" style={{ fontFamily: "'Outfit', sans-serif" }}>
                                 9. Contact Us
                             </h2>
                             <p className="mb-4 text-blue-100">

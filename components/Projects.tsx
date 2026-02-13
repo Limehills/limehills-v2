@@ -1,24 +1,25 @@
-import React, { useState, useRef, useEffect } from 'react';
-
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-react';
 
 const PROJECTS_DATA = [
   {
     id: 1,
-    title: "BIGASAN HUB",
-    subtitle: "INVENTORY SYSTEM",
+    title: "Bigasan Hub",
+    subtitle: "Inventory Management System",
     image: "/bigasan.png",
     impacts: [
       "Reduced Stock Shortages",
       "Lower Inventory Costs",
       "Real-Time Inventory Visibility",
-      "Improved Order Fulfillment Speed",
+      "Improved Order Fulfillment",
       "Increased Operational Efficiency"
     ]
   },
   {
     id: 2,
-    title: "JAMS BRANDED COLLECTION",
-    subtitle: "INVENTORY SYSTEM",
+    title: "Jams Branded Collection",
+    subtitle: "Inventory System",
     image: "/jam.jpg",
     impacts: [
       "Accurate stock tracking",
@@ -30,8 +31,8 @@ const PROJECTS_DATA = [
   },
   {
     id: 3,
-    title: "ALIN CARGO EXPRESS",
-    subtitle: "MONEY REMITTANCE SYSTEM",
+    title: "Alin Cargo Express",
+    subtitle: "Money Remittance System",
     image: "cargo-express.jpg",
     impacts: [
       "Faster transactions",
@@ -45,43 +46,15 @@ const PROJECTS_DATA = [
 
 const Projects: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [imageParallax, setImageParallax] = useState(0);
+  const containerRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
+  // Parallax hook
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleImageParallax = () => {
-      if (!sectionRef.current) return;
-      const { top } = sectionRef.current.getBoundingClientRect();
-      if (top < window.innerHeight && top > -500) {
-        setImageParallax((top - window.innerHeight) * 0.2);
-      }
-    };
-
-    window.addEventListener('scroll', handleImageParallax);
-    return () => window.removeEventListener('scroll', handleImageParallax);
-  }, []);
+  const yParallax = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % PROJECTS_DATA.length);
@@ -95,132 +68,182 @@ const Projects: React.FC = () => {
 
   return (
     <section
-      ref={sectionRef}
-      className="py-20 px-4 md:px-8 bg-[#f0f4f8] font-sans relative overflow-hidden"
+      ref={containerRef}
+      className="py-24 px-4 md:px-8 bg-slate-50 font-sans relative overflow-hidden"
     >
-      <div className="max-w-8xl mx-auto">
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-[#1034a6]/5 skew-x-12 transform origin-top-right pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
 
         {/* Header Section */}
-        <div className={`flex flex-col xl:flex-row items-start xl:items-end justify-between mb-12 gap-10 relative transition-all duration-1000 ${isVisible ? 'animate-fade-in-down' : 'opacity-0 -translate-y-10'}`}>
+        <div className="flex flex-col xl:flex-row items-start xl:items-end justify-between mb-16 gap-10">
 
           {/* Title Area */}
-          <div className="relative z-10 shrink-0">
-            <h2 className="text-7xl md:text-8xl font-black uppercase leading-[0.8] tracking-tighter font-sans">
-              <span className="text-[#1034a6]">FINISHED</span> <br />
-              <span className="text-white" style={{ textShadow: '7px 7px 0 #1034a6' }}>
-                PROJECTS
-              </span>
-            </h2>
+          <div className="shrink-0">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <h2 className="text-6xl md:text-8xl font-black uppercase leading-[0.9] tracking-tight text-slate-900" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                <span className="text-[#1034a6]">FINISHED</span> <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-slate-600">
+                  PROJECTS
+                </span>
+              </h2>
+            </motion.div>
 
             {/* Navigation Buttons */}
-            <div className="flex gap-1 mt-8 animate-fade-in-left" style={{ animationDelay: '0.3s' }}>
+            <motion.div
+              className="flex gap-4 mt-8"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
               <button
                 onClick={handlePrev}
-                className="w-20 h-12 bg-[#8daef2] hover:bg-[#7a9ce6] flex items-center justify-center transition-all group hover:shadow-lg"
+                className="w-16 h-16 rounded-full border border-slate-200 bg-white hover:bg-[#1034a6] hover:border-[#1034a6] hover:text-white text-[#1034a6] flex items-center justify-center transition-all duration-300 shadow-lg shadow-blue-900/5 hover:shadow-blue-900/20"
               >
-                <svg width="70" height="32" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" className="text-white group-hover:-translate-x-1 transition-transform">
-                  <path d="M22 10H-7V6l-6 6 6 6v-4h70V10z" />
-                </svg>
+                <ChevronLeft size={32} />
               </button>
               <button
                 onClick={handleNext}
-                className="w-20 h-12 bg-[#1034a6] hover:bg-[#0a2375] flex items-center justify-center transition-all group"
+                className="w-16 h-16 rounded-full bg-[#1034a6] text-white flex items-center justify-center transition-all duration-300 shadow-lg shadow-blue-900/20 hover:bg-[#0a2375] hover:scale-105"
               >
-                <svg width="70" height="32" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" className="text-white group-hover:translate-x-1 transition-transform">
-                  <path d="M2 10h26V6l6 6-6 6v-4H-10V10z" />
-                </svg>
+                <ChevronRight size={32} />
               </button>
-            </div>
+            </motion.div>
           </div>
 
           {/* Subtitle / Tagline */}
-          <div className="flex-1 w-full md:w-auto md:ml-2 mb-2 md:mb-4 self-center md:self-start md:mt-20">
-            <div className="border-b-4 border-[#1034a6] pb-1 w-full">
-              <p className="text-[#1034a6] font-bold text-lg md:text-3xl italic tracking-wide">
-                Built with precision. Delivered with purpose.
+          <motion.div
+            className="flex-1 w-full md:w-auto xl:ml-12 xl:mb-4 self-center xl:self-end"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            <div className="pl-6 border-l-4 border-[#1034a6]">
+              <p className="text-[#1034a6] font-bold text-xl md:text-2xl italic tracking-wide leading-relaxed" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                Built with precision. <br className="hidden md:block" />Delivered with purpose.
               </p>
-              <div className="h-3 w-full bg-white shadow-[4px_0px_0px_#1034a6]"></div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        {/* Main Content Area - Slideshow Container */}
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start mt-2">
+        {/* Main Content Area */}
+        <div className="min-h-[600px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentProject.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="flex flex-col lg:flex-row gap-10 lg:gap-20 items-stretch"
+            >
 
-          {/* LEFT: Project Image (Monitor/Frame Style) */}
-          <div className={`w-full lg:w-1/2 relative group perspective-1000 transition-all duration-1000 ${isVisible ? 'animate-slide-in-left' : 'opacity-0 -translate-x-10'}`} style={{ transform: `translateY(${imageParallax}px)` }}>
-            {/* Background Decoration Box */}
-            <div className=" absolute top-4 left-4 w-full h-full bg-[#1034a6] -z-200 transform translate-x-2 translate-y-2 rounded-sm"></div>
+              {/* LEFT: Project Image */}
+              <div className="w-full lg:w-1/2 relative group">
+                <motion.div
+                  className="w-full h-full relative rounded-3xl overflow-hidden shadow-2xl shadow-slate-200 bg-white aspect-[4/3] lg:aspect-auto min-h-[400px]"
+                  style={{ y: yParallax }}
+                >
+                  {/* Card Frame */}
+                  <div className="absolute inset-0 border-8 border-white/50 z-20 rounded-3xl pointer-events-none"></div>
 
-            <div className="bg-white border-[6px] border-[#1034a6] p-4 shadow-xl relative z-10 transition-transform duration-500 ease-out transform group-hover:-translate-y-1">
-              <div className="border-[10px] border-[#1034a6] overflow-hidden">
-                <img
-                  key={currentProject.image}
-                  src={currentProject.image}
-                  alt={currentProject.title}
-                  className="w-full h-[300px] md:h-[600px] object-cover animate-fade-in"
-                />
-              </div>
-              {/* Mock Login Form Overlay (Optional or integrated into image functionality) - visually simulating the 'Bigasan Hub' look if image isn't enough */}
-            </div>
-          </div>
+                  <img
+                    src={currentProject.image}
+                    alt={currentProject.title}
+                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                  />
 
-          {/* RIGHT: Project Details */}
-          <div className={`w-full lg:w-1/2 space-y-8 transition-all duration-1000 ${isVisible ? 'animate-slide-in-right' : 'opacity-0 translate-x-10'}`} style={{ animationDelay: '0.2s' }}>
+                  {/* Subtle Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1034a6]/80 via-transparent to-transparent opacity-60"></div>
 
-            {/* Title Block */}
-            {/* Title Block */}
-            <div>
-              <h3 className="text-6xl md:text-7xl font-black text-[#1034a6] uppercase leading-[0.85] mb-2 font-sans">
-                {currentProject.title}
-              </h3>
-              <p className="text-3xl md:text-4xl font-bold text-[#1034a6] uppercase tracking-tight font-sans">
-                {currentProject.subtitle}
-              </p>
-            </div>
+                  <div className="absolute bottom-8 left-8 right-8 z-30">
+                    <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-md rounded-lg border border-white/30 text-white font-medium text-sm mb-2">
+                      Featured Case Study
+                    </span>
+                  </div>
+                </motion.div>
 
-            {/* Impact Section */}
-            <div className="space-y-4">
-              {/* Boxed Header */}
-              <div className="inline-block bg-white border-4 border-[#1034a6] shadow-[6px_6px_0px_#1034a6]">
-                <h4 className="text-[#1034a6] font-black text-xl md:text-4xl px-6 py-2 uppercase tracking-wider">
-                  IMPACT TO OUR CLIENT
-                </h4>
+                {/* Decorative Blob */}
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-[#1034a6]/10 rounded-full blur-3xl -z-10"></div>
               </div>
 
-              {/* Bullet List */}
-              <ul className="space-y-3 mt-6 ml-2">
-                {currentProject.impacts.map((impact, index) => (
-                  <li key={index} className="flex items-center text-[#1034a6] text-lg md:text-3xl font-bold">
-                    <span className="text-2xl mr-3">•</span>
-                    {impact}
-                  </li>
-                ))}
-              </ul>
-            </div>
+              {/* RIGHT: Project Details */}
+              <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-10 py-4">
 
-          </div>
+                {/* Title Block */}
+                <div>
+                  <motion.h3
+                    className="text-5xl md:text-6xl font-bold text-slate-900 leading-tight mb-3"
+                    style={{ fontFamily: "'Outfit', sans-serif" }}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    {currentProject.title}
+                  </motion.h3>
+                  <motion.p
+                    className="text-2xl md:text-3xl font-medium text-[#1034a6]"
+                    style={{ fontFamily: "'Outfit', sans-serif" }}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    {currentProject.subtitle}
+                  </motion.p>
+                </div>
 
+                {/* Impact Section */}
+                <div className="space-y-6">
+                  {/* Header */}
+                  <motion.div
+                    className="flex items-center gap-4"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    <div className="h-[2px] w-12 bg-[#1034a6]"></div>
+                    <h4 className="text-[#1034a6] font-bold text-lg uppercase tracking-widest" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                      IMPACT TO OUR CLIENT
+                    </h4>
+                  </motion.div>
+
+                  {/* Impacts Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {currentProject.impacts.map((impact, index) => (
+                      <motion.div
+                        key={index}
+                        className="group bg-white rounded-2xl p-5 border border-slate-100 shadow-sm hover:shadow-md hover:border-[#1034a6]/30 transition-all duration-300"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5 + (index * 0.1) }}
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-[#1034a6] group-hover:bg-[#1034a6] group-hover:text-white transition-colors duration-300 shrink-0">
+                            <ArrowUpRight size={16} />
+                          </div>
+                          <span className="text-slate-700 font-semibold leading-tight pt-1 group-hover:text-[#1034a6] transition-colors" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                            {impact}
+                          </span>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
       </div>
-
-      <style>{`
-        @keyframes fadeIn {
-          from { opacity: 0; filter: blur(4px); }
-          to { opacity: 1; filter: blur(0); }
-        }
-        @keyframes slideInRight {
-          from { opacity: 0; transform: translateX(20px); }
-          to { opacity: 1; transform: translateX(0); }
-        }
-        .animate-fade-in {
-          animation: fadeIn 0.5s ease-out forwards;
-        }
-        .animate-slide-in-right {
-          animation: slideInRight 0.5s ease-out forwards;
-        }
-      `}</style>
     </section>
   );
 };
